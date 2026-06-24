@@ -105,6 +105,13 @@ function Testimonials() {
           ))}
         </div>
       </Reveal>
+
+      {/* Testimonials Title Box */}
+      <Reveal delay={0.2} className="tmonials__title-container">
+        <div className="tmonials__title-box">
+          <h2 className="tmonials__title-text">testimonials</h2>
+        </div>
+      </Reveal>
     </section>
   );
 }

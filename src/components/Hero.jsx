@@ -66,9 +66,28 @@ function Marker({ code }) {
   );
 }
 
-function Hero() {
+function Hero({ loading }) {
   const time = useLosAngelesTime();
   const contentRef = useRef(null);
+  const heroRef = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    if (loading) {
+      setInView(false);
+      return;
+    }
+    const el = heroRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [loading]);
 
   // Animated count-up for the "120+" figure (kicks off after the intro).
   const [count, setCount] = useState(0);
@@ -99,7 +118,7 @@ function Hero() {
   }, []);
 
   return (
-    <section className="hero" id="hero">
+    <section ref={heroRef} className={`hero ${inView ? "is-visible" : ""}`} id="hero">
       {/* Fixed background image + dot overlay + scrim */}
       <div className="hero__bg">
         <div className="hero__bg-image" />

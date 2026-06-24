@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navigation from "./components/Navigation.jsx";
 import Hero from "./components/Hero.jsx";
 import Intro from "./components/Intro.jsx";
@@ -13,13 +14,15 @@ import ScrollProgress from "./components/ScrollProgress.jsx";
 import "./App.css";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <>
       <ScrollProgress />
-      <Intro />
+      <Intro onComplete={() => setLoading(false)} />
       <Navigation />
       <main className="main">
-        <Hero />
+        <Hero loading={loading} />
         <Statement />
         <Projects />
         <Performance />

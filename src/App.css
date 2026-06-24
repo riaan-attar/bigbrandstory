@@ -6,3 +6,57 @@
      (overflow-x: hidden would force overflow-y to auto and break sticky.) */
   overflow-x: clip;
 }
+
+/* ---------- Section scroll-stack (everything after Services) ----------
+   Literal pinning: each panel is sticky at top:0 and the next slides up over
+   it (same mechanic as the Services card stack). Rising z-index + a rounded
+   top + soft shadow give the stacked-sheet look.
+   - Process is two full screens, so its TWO inner panels pin separately
+     (otherwise pinning the whole section would hide the aurora panel).
+   - The footer is last: it must NOT pin (nothing would cover it, so it would
+     trap the scroll), so it stays relative and slides up over Testimonials.
+   - No transforms are used, so the FAQ's inner sticky column keeps working. */
+#process .proc-intro,
+#process .proc-panel,
+#faq,
+#testimonials,
+#contact {
+  border-top-left-radius: 44px;
+  border-top-right-radius: 44px;
+  box-shadow: 0 -34px 80px -46px rgba(0, 0, 0, 0.55);
+}
+
+#process {
+  position: relative;
+  z-index: 3;
+}
+#process .proc-intro,
+#process .proc-panel {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+}
+#process .proc-intro {
+  z-index: 1;
+}
+#process .proc-panel {
+  z-index: 2;
+}
+
+#faq,
+#testimonials {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+}
+#faq {
+  z-index: 4;
+}
+#testimonials {
+  z-index: 5;
+}
+
+#contact {
+  position: relative;
+  z-index: 6;
+}

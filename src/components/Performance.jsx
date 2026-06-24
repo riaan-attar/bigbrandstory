@@ -3,6 +3,16 @@ import NumberFlow from "@number-flow/react";
 import Reveal from "./Reveal.jsx";
 import "./Performance.css";
 import createLogo from "/assets/logos/logo.svg";
+import brand1 from "/assets/logos/brand1.svg";
+import brand2 from "/assets/logos/brand2.svg";
+import brand3 from "/assets/logos/brand3.svg";
+import brand4 from "/assets/logos/brand4.svg";
+import brand5 from "/assets/logos/brand5.svg";
+import brand6 from "/assets/logos/brand6.svg";
+import brand7 from "/assets/logos/brand7.svg";
+import brand8 from "/assets/logos/brand8.svg";
+
+const BRANDS = [brand1, brand2, brand3, brand4, brand5, brand6, brand7, brand8];
 
 const STATS = [
   { value: 86, suffix: "+", label: "PROJECTS SHIPPED", idx: "001", fill: 72 },
@@ -78,6 +88,19 @@ function Performance() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="perf__brands">
+          <p className="perf__brands-label">
+            BRANDS WHO ARE PART OF OUR SUCCESS STORY
+          </p>
+          <div className="perf__marquee">
+            <div className="perf__marquee-track">
+              {[...BRANDS, ...BRANDS].map((logo, i) => (
+                <img key={i} className="perf__brand-logo" src={logo} alt="" />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import Intro from "./components/Intro.jsx";
 import Statement from "./components/Statement.jsx";
 import Projects from "./components/Projects.jsx";
 import Performance from "./components/Performance.jsx";
+import Services from "./components/Services.jsx";
 import "./App.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Statement />
         <Projects />
         <Performance />
+        <Services />
       </main>
     </>
   );

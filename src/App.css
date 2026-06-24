@@ -1,5 +1,8 @@
 .main {
   position: relative;
   width: 100%;
-  overflow-x: hidden;
+  /* `clip` prevents horizontal overflow WITHOUT creating a scroll container,
+     so position: sticky (Services/Statement scroll-stacks) keeps working.
+     (overflow-x: hidden would force overflow-y to auto and break sticky.) */
+  overflow-x: clip;
 }

@@ -2,7 +2,7 @@
 .stmt-wrap {
   position: relative;
   z-index: 2;
-  height: 300vh;
+  height: 400vh;
   background: var(--off-white);
 }
 
@@ -21,12 +21,10 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      80% 70% at 50% 40%,
+    radial-gradient(80% 70% at 50% 40%,
       #ffffff 0%,
       #ececec 60%,
-      #e2e2e2 100%
-    );
+      #e2e2e2 100%);
 }
 
 .stmt-video {
@@ -83,6 +81,7 @@
   .stmt-line {
     font-size: clamp(2.2rem, 12vw, 4rem);
   }
+
   .stmt-line--big {
     font-size: clamp(2.6rem, 16vw, 5rem);
   }

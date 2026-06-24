@@ -59,8 +59,8 @@ function Statement() {
 
   const lineStyle = (i) => {
     if (reduced.current) return { opacity: 1, transform: "none" };
-    const start = i * 0.22;
-    const windowLen = 0.3;
+    const start = 0.16 + i * 0.20; // Starts later (after 16% scroll) and spreads out
+    const windowLen = 0.22;
     const t = clamp((progress - start) / windowLen, 0, 1);
     const eased = easeOutBack(t);
     const scale = 0.62 + 0.38 * eased;

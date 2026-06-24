@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Lenis from "lenis";
 import Navigation from "./components/Navigation.jsx";
 import Hero from "./components/Hero.jsx";
 import Intro from "./components/Intro.jsx";
@@ -15,6 +16,30 @@ import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential easeOut
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      mouseMultiplier: 0.95,
+      smoothTouch: false,
+    });
+
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
 
   return (
     <>

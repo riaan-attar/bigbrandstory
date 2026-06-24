@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <ScrollProgress />
-      <Intro onComplete={() => setLoading(false)} />
+      {loading && <Intro onComplete={() => setLoading(false)} />}
       <Navigation />
       <main className="main">
         <Hero loading={loading} />

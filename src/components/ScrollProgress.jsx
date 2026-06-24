@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./ScrollProgress.css";
 
 /** Fixed reading-progress bar across the top of the page. */
 function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
+  const barRef = useRef(null);
 
   useEffect(() => {
     let raf = 0;
     const update = () => {
       const el = document.documentElement;
       const max = el.scrollHeight - el.clientHeight;
-      setProgress(max > 0 ? (el.scrollTop / max) * 100 : 0);
+      const p = max > 0 ? el.scrollTop / max : 0;
+      // Write the compositor-only transform straight to the DOM (no React
+      // re-render, no width/layout) so it tracks the scroll smoothly.
+      if (barRef.current) barRef.current.style.transform = `scaleX(${p})`;
     };
     const onScroll = () => {
       cancelAnimationFrame(raf);
@@ -28,7 +31,7 @@ function ScrollProgress() {
 
   return (
     <div className="scroll-progress" aria-hidden="true">
-      <div className="scroll-progress__bar" style={{ width: `${progress}%` }} />
+      <div className="scroll-progress__bar" ref={barRef} />
     </div>
   );
 }

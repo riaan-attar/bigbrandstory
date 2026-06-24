@@ -105,7 +105,7 @@ function Footer() {
             scale and perform.
           </p>
           <h2 className="footer__wordmark">
-            <span className="accent">Create</span>\Studio
+            <span className="accent">TheBig</span>|BrandStory
           </h2>
           <div className="footer__about">
             <span className="footer__about-avatar" aria-hidden="true" />
@@ -114,8 +114,7 @@ function Footer() {
               premium websites.
             </p>
           </div>
-          <p className="footer__copy">© 2026 Create Studio — All work, all rights.</p>
-          <p className="footer__credit">Framer template · designed by tamas</p>
+          <p className="footer__copy">© 2026 TheBigBrandStory — All work, all rights.</p>
         </Reveal>
 
         <Reveal as="div" delay={0.1} className="footer__contact">

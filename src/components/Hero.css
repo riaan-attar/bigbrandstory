@@ -96,7 +96,7 @@
   max-width: 18ch;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.8rem, 3.2vw, 3.4rem);
+  font-size: clamp(1.4rem, 2.2vw, 2.4rem);
   line-height: 1.05;
   letter-spacing: -0.035em;
 }
@@ -180,7 +180,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(3.5rem, 11vw, 9rem);
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
   letter-spacing: -0.07em;
   line-height: 0.9;
   color: var(--off-white);
@@ -391,7 +391,7 @@
 /* ---------- Responsive: stack into normal flow on small screens ---------- */
 @media (max-width: 1199.98px) {
   .hero__wordmark {
-    font-size: clamp(3rem, 10vw, 6rem);
+    font-size: clamp(2.5rem, 7.5vw, 5rem);
     left: 6%;
   }
   .hero__bottom {
@@ -426,7 +426,7 @@
   }
 
   .hero__message {
-    font-size: 2rem;
+    font-size: 1.6rem;
     max-width: 100%;
   }
 
@@ -440,7 +440,7 @@
   }
 
   .hero__wordmark {
-    font-size: clamp(3rem, 18vw, 5rem);
+    font-size: clamp(2.5rem, 12vw, 4rem);
   }
 
   .hero__buttons {

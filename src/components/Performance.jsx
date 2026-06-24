@@ -29,13 +29,9 @@ function Performance() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Re-trigger the count-up + bar fill each time the stats scroll into view.
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShown(true);
-          obs.disconnect();
-        }
-      },
+      ([entry]) => setShown(entry.isIntersecting),
       { threshold: 0.35 }
     );
     obs.observe(el);

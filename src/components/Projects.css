@@ -6,7 +6,8 @@
 
 /* ---------- Full-bleed panel ---------- */
 .project {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: block;
   height: 100vh;
   overflow: hidden;
@@ -19,11 +20,21 @@
   inset: 0;
   background-size: cover;
   background-position: center;
-  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: scale(1.16);
+  opacity: 0;
+  transition:
+    transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.project:hover .project__bg {
-  transform: scale(1.04);
+.project.is-visible .project__bg {
+  transform: scale(1.02);
+  opacity: 1;
+}
+
+.project.is-visible:hover .project__bg {
+  transform: scale(1.06);
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .project__scrim {

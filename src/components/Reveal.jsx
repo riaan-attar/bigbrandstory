@@ -17,14 +17,11 @@ export default function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Keep observing (don't disconnect) so the reveal re-plays every time the
+    // element scrolls back into view, instead of firing only once.
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();

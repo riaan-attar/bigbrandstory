@@ -12,7 +12,7 @@ const PROJECTS = [
     category: "HOSPITALITY BRANDING AND WEBSITE",
     stack: ["NEXT.JS", "TYPESCRIPT", "TAILWIND CSS", "FRAMER MOTION", "CLOUDFLARE CDN"],
     year: "2025",
-    image: null,
+    image: "https://framerusercontent.com/images/yAyCNDhQbTvqJAfsIABAsGb15g.jpeg",
     bg: "linear-gradient(135deg, #a8c3cf 0%, #d7ddd6 55%, #b9c7c4 100%)",
     href: "#work",
   },
@@ -23,7 +23,7 @@ const PROJECTS = [
     category: "AUTOMOTIVE DIGITAL TRANSFORMATION",
     stack: ["REACT", "WEBGL", "NODE.JS", "AWS LAMBDA", "OPENAI EMBEDDINGS"],
     year: "2025",
-    image: null,
+    image: "https://framerusercontent.com/images/Sl9EJQTfoycU8fTKPQzTCSt7wI.jpg",
     bg: "linear-gradient(120deg, #4a4d50 0%, #2a2c2e 50%, #161718 100%)",
     href: "#work",
   },
@@ -34,7 +34,7 @@ const PROJECTS = [
     category: "E-MOBILITY BRAND LAUNCH",
     stack: ["FRAMER", "NEXT.JS", "GSAP", "WEBGL", "META ADS INTEGRATION"],
     year: "2025",
-    image: null,
+    image: "https://framerusercontent.com/images/Tw5d4QXO8KrpmBh9B9bEy8oWm1g.jpg",
     bg: "linear-gradient(160deg, #1c1d21 0%, #0c0c0e 100%)",
     href: "#work",
   },
@@ -51,6 +51,72 @@ function Arrow() {
         strokeLinejoin="round"
       />
     </svg>
+  );
+}
+
+function ProjectItem({ p, onMouseEnter, onMouseLeave }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        } else {
+          setVisible(false);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <a
+      ref={ref}
+      className={`project ${visible ? "is-visible" : ""}`}
+      href={p.href}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div
+        className="project__bg"
+        style={
+          p.image
+            ? { backgroundImage: `url(${p.image})` }
+            : { backgroundImage: p.bg }
+        }
+      />
+      <div className="project__scrim" />
+
+      <div className="project__top">
+        <div className="project__logo">
+          <span className="project__logo-main">{p.client}</span>
+          {p.clientSub && (
+            <span className="project__logo-sub">{p.clientSub}</span>
+          )}
+        </div>
+        <span className="project__ruler" />
+      </div>
+
+      <div className="project__center">
+        <h2 className="project__title">{p.title}</h2>
+        <p className="project__subtitle">{p.category}</p>
+      </div>
+
+      <div className="project__bottom">
+        <ul className="project__stack">
+          {p.stack.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
+        <span className="project__year">YR/ {p.year}</span>
+      </div>
+    </a>
   );
 }
 
@@ -71,47 +137,12 @@ function Projects() {
   return (
     <section className="projects" id="projects">
       {PROJECTS.map((p) => (
-        <a
+        <ProjectItem
           key={p.id}
-          className="project"
-          href={p.href}
+          p={p}
           onMouseEnter={() => setActive(true)}
           onMouseLeave={() => setActive(false)}
-        >
-          <div
-            className="project__bg"
-            style={
-              p.image
-                ? { backgroundImage: `url(${p.image})` }
-                : { backgroundImage: p.bg }
-            }
-          />
-          <div className="project__scrim" />
-
-          <div className="project__top">
-            <div className="project__logo">
-              <span className="project__logo-main">{p.client}</span>
-              {p.clientSub && (
-                <span className="project__logo-sub">{p.clientSub}</span>
-              )}
-            </div>
-            <span className="project__ruler" />
-          </div>
-
-          <div className="project__center">
-            <h2 className="project__title">{p.title}</h2>
-            <p className="project__subtitle">{p.category}</p>
-          </div>
-
-          <div className="project__bottom">
-            <ul className="project__stack">
-              {p.stack.map((s) => (
-                <li key={s}>{s}</li>
-              ))}
-            </ul>
-            <span className="project__year">YR/ {p.year}</span>
-          </div>
-        </a>
+        />
       ))}
 
       {/* Custom follow cursor */}

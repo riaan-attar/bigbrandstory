@@ -1,0 +1,89 @@
+/* Tall wrapper provides the scroll distance for the pinned effect */
+.stmt-wrap {
+  position: relative;
+  z-index: 2;
+  height: 300vh;
+  background: var(--off-white);
+}
+
+/* Sticky child stays in view while scrolling through the wrapper */
+.stmt-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stmt-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      80% 70% at 50% 40%,
+      #ffffff 0%,
+      #ececec 60%,
+      #e2e2e2 100%
+    );
+}
+
+.stmt-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) brightness(1.04) contrast(1.05);
+}
+
+.stmt-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/assets/media/dots.svg");
+  background-repeat: repeat;
+  background-size: 4px 4px;
+  opacity: 0.08;
+}
+
+.stmt-lines {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 0.95;
+  padding: 0 24px;
+}
+
+.stmt-line {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  color: var(--dark);
+  font-size: clamp(3rem, 8.5vw, 8rem);
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+.stmt-line--accent {
+  color: var(--orange);
+}
+
+.stmt-line--big {
+  font-size: clamp(4rem, 15vw, 13rem);
+  letter-spacing: -0.06em;
+}
+
+@media (max-width: 809.98px) {
+  .stmt-line {
+    font-size: clamp(2.2rem, 12vw, 4rem);
+  }
+  .stmt-line--big {
+    font-size: clamp(2.6rem, 16vw, 5rem);
+  }
+}

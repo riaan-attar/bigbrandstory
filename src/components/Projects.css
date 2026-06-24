@@ -1,0 +1,219 @@
+.projects {
+  position: relative;
+  z-index: 2;
+  background: var(--black);
+}
+
+/* ---------- Full-bleed panel ---------- */
+.project {
+  position: relative;
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--white);
+  cursor: none;
+}
+
+.project__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project:hover .project__bg {
+  transform: scale(1.04);
+}
+
+.project__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.05) 30%,
+    rgba(0, 0, 0, 0.1) 60%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+}
+
+/* ---------- Top row: logo + ruler ---------- */
+.project__top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 130px 40px 0;
+}
+
+.project__logo {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.project__logo-main {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.04em;
+}
+
+.project__logo-sub {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  line-height: 1.1;
+  text-transform: lowercase;
+  opacity: 0.8;
+  max-width: 5ch;
+}
+
+.project__ruler {
+  width: 360px;
+  max-width: 30vw;
+  height: 16px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.55) 0,
+    rgba(255, 255, 255, 0.55) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+}
+
+/* ---------- Center: title + subtitle ---------- */
+.project__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+  gap: 14px;
+}
+
+.project__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3rem, 6.5vw, 6rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  padding: 6px 28px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(2px);
+}
+
+.project__subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Bottom row: stack + year ---------- */
+.project__bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 40px 40px;
+}
+
+.project__stack {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: -0.02em;
+}
+
+.project__year {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Custom follow cursor ---------- */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cursor__badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--white);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.25s ease;
+}
+
+.cursor__badge.is-active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.cursor__arrow svg {
+  width: 44px;
+  height: 44px;
+}
+
+.cursor__label {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 809.98px) {
+  .project {
+    cursor: pointer;
+  }
+  .project__top {
+    padding: 90px 20px 0;
+  }
+  .project__bottom {
+    padding: 0 20px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .project__ruler {
+    display: none;
+  }
+  .cursor {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project__bg,
+  .cursor__badge {
+    transition: none;
+  }
+}

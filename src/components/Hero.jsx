@@ -23,13 +23,13 @@ const BRAND_LOGOS = [
   { src: brand8, w: 30 },
 ];
 
-/* Live clock in Los Angeles time (UTC-8), matching the reference. */
-function useLosAngelesTime() {
+/* Live clock in Nashik, India time (UTC+5:30). */
+function useNashikTime() {
   const [time, setTime] = useState("");
   useEffect(() => {
     const format = () =>
       new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/Los_Angeles",
+        timeZone: "Asia/Kolkata",
         hour: "numeric",
         minute: "2-digit",
         second: "2-digit",
@@ -67,7 +67,7 @@ function Marker({ code }) {
 }
 
 function Hero({ loading }) {
-  const time = useLosAngelesTime();
+  const time = useNashikTime();
   const contentRef = useRef(null);
   const heroRef = useRef(null);
   const [inView, setInView] = useState(false);
@@ -140,7 +140,7 @@ function Hero({ loading }) {
 
         {/* Top-left message */}
         <h2 className="hero__message reveal" style={{ "--d": "0.05s" }}>
-          Digital experiences that connect, scale and perform
+          Storytelling led Brand Building Studio
           <span className="accent">.</span>
         </h2>
 
@@ -160,7 +160,7 @@ function Hero({ loading }) {
 
         {/* Mid-left wordmark */}
         <h1 className="hero__wordmark reveal" style={{ "--d": "0.25s" }}>
-          <span className="accent">thebig</span> brandstory
+          <span className="accent">TheBig</span>BrandStory
         </h1>
 
         {/* Bottom-left subtitle / clock / buttons */}
@@ -172,7 +172,7 @@ function Hero({ loading }) {
 
           <div className="hero__timezone">
             <p className="hero__tz-label">OUR TIME {time}</p>
-            <p className="hero__tz-label">UTC−8 LOS ANGELES</p>
+            <p className="hero__tz-label">UTC+5:30 NASHIK, INDIA</p>
           </div>
 
           <div className="hero__buttons">
